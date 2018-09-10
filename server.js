@@ -29,7 +29,7 @@ app.get('/', (req, res) => res.send('Hello'));
 // 12. Use routes. Whats happening here is that the file will redirect to the USER area which is defined already on step 10.
 app.use('/api/users', users);
 app.use('/api/profile', profile);
-app.use('/api/post', posts)
+app.use('/api/posts', posts)
 
 // 3. Heroku Deployment
 const port = process.env.PORT || 5000;

@@ -6,7 +6,10 @@
 const express = require('express');
 const router = express.Router();
 
-// /api/users/test / res.json is similar to res.send but its going to output json
+// res.json is similar to res.send but its going to output json
+// @route GET api/post/test
+// @desc - Test users routes
+// @access, Public
 router.get('/test', (req,res) => res.json({msg: "Users Works"}));
 
 module.exports = router;
