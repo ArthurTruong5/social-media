@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const passport = require('passport');
+
 
 // 10. Bring Folders from the routes/api area
 const users = require('./routes/api/users');
@@ -32,9 +33,12 @@ mongoose
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
+// Passport Middleware
+app.use(passport.initialize());
 
-// 5. CRUD => Read
-app.get('/', (req, res) => res.send('Hello'));
+// Passport Config
+require('./config/passport')(passport);
+
 
 // 12. Use routes. Whats happening here is that the file will redirect to the USER area which is defined already on step 10.
 app.use('/api/users', users);
