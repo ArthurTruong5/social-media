@@ -1,6 +1,9 @@
 // 1. Module
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const gravatar = require('gravatar');
+const bcrypt = require('bcryptjs');
 
 // 10. Bring Folders from the routes/api area
 const users = require('./routes/api/users');
@@ -9,6 +12,12 @@ const posts = require('./routes/api/posts');
 
 // 2. Invoke App
 const app = express();
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(bodyParser.json());
 
 // 8. DB Config -> Goes to config => keys.js
 const db = require('./config/keys').mongoURI;
