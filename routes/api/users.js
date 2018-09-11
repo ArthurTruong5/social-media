@@ -13,6 +13,8 @@ const passport = require('passport');
 // Load User model
 const User = require('../../models/User')
 
+const validateRegisterInput = require('../../validation/register');
+
 // res.json is similar to res.send but its going to output json
 // @route GET api/users/test
 // @desc - Test users routes
@@ -23,12 +25,24 @@ router.get('/test', (req,res) => res.json({msg: "Users Works"}));
 // @desc - Register User
 // @access, Public
 router.post('/register', (req,res) => {
+
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   // Find user by email
   User.findOne({ email: req.body.email })
   .then(user => {
     if(user) {
-      return res.status(400).json({email: 'Email already exists'});
+      // Output error message
+      errors.email = "Email aready exist";
+      // If user has same email
+      return res.status(400).json(errors);
     } else {
+      // Else continue
       const avatar = gravatar.url(req.body.email, {
         s: '200', // Size
         r: 'pg', // Rating
@@ -105,7 +119,7 @@ router.post('/login', (req,res) => {
 // @access, Private
 router.get(
   '/current',
-  passport.authenticate('jwt', { session: false}),
+  passport.authenticate('jwt', { session: false }),
   (req,res) => {
   res.json({
     id: req.user.id,

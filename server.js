@@ -6,7 +6,6 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
-
 // 10. Bring Folders from the routes/api area
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
