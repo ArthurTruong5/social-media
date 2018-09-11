@@ -7,6 +7,9 @@ module.exports = function validateRegisterInput(data) {
   let errors = {};
   // (Ternary) If its not empty THEN output data.name but if it IS empty then just be an empty string. THIS CHANGES IT INTO A EMPTY STRING
   data.name = !isEmpty(data.name) ? data.name : '';
+  data.name = !isEmpty(data.email) ? data.email : '';
+  data.name = !isEmpty(data.password) ? data.password : '';
+  data.name = !isEmpty(data.password2) ? data.password2 : '';
   // Checks length
   if(!Validator.isLength(data.name,{ min: 2, max: 30 })){
     errors.name = "Name must be between 2 and 30 characters";
