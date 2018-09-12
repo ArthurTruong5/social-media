@@ -18,14 +18,13 @@ module.exports = function validateLoginInput(data) {
     errors.name = "Name field is required";
   }
 
-  if (Validator.isEmpty(data.email)) {
-    errors.email = "Blank Input! Must put a email";
-  }
-
   if (!Validator.isEmail(data.email)) {
     errors.email = "Invalid Email";
   }
 
+  if (Validator.isEmpty(data.email)) {
+    errors.email = "Blank Input! Must put a email";
+  }
 
   return {
     errors,
