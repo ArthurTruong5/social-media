@@ -14,6 +14,7 @@ const passport = require('passport');
 const User = require('../../models/User')
 
 const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 // res.json is similar to res.send but its going to output json
 // @route GET api/users/test
@@ -27,8 +28,7 @@ router.get('/test', (req,res) => res.json({msg: "Users Works"}));
 router.post('/register', (req,res) => {
 
   const { errors, isValid } = validateRegisterInput(req.body);
-
-  // Check validation
+  // Check Validation
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -76,12 +76,19 @@ router.post('/login', (req,res) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  const { errors, isValid } = validateLoginInput(req.body);
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   // Find the user by Email
   User.findOne({email})
     .then(user => {
       // Check for user
       if(!user) {
-        return res.status(404).json({email: 'User not found'})
+        errors.email = "User not found";
+        return res.status(404).json(errors)
       }
 
       // Check password
