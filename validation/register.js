@@ -49,7 +49,6 @@ module.exports = function validateRegisterInput(data) {
   }
 
 
-
   return {
     // Returning all errors
     errors,

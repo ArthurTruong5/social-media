@@ -14,9 +14,9 @@ const validateProfileInput = require('../../validation/profile');
 const validateExperienceInput = require('../../validation/experience');
 const validateEducationInput = require('../../validation/education');
 
-// Load Profile Schema
+// Load Profile Schema - Profile Model
 const Profile = require('../../models/Profile');
-// Load User Schema
+// Load User Schema - User Model
 const User = require('../../models/User');
 
 // res.json is similar to res.send but its going to output json
@@ -260,6 +260,48 @@ router.post(
         // Save
         profile.save()
         .then(profile => res.json(profile));
+    })
+    .catch( err => res.status(404).json(err));
+  });
+
+  // @route DELETE api/profile/experience/:exp_id
+  // @desc - Delete experience from profile
+  // @access, Private
+  router.delete('/education/:edu_id', passport.authenticate('jwt', { session: false}), (req,res) => {
+
+    Profile.findOne({ user: req.user.id })
+    .then(profile => {
+      // Get remove index. experience is an array btw xD
+      const removeIndex = profile.education
+      // Map the array into something else
+        .map(item => item.id)
+        .indexOf(req.params.exp_id);
+
+        // Splice out of array
+        profile.education.splice(removeIndex, 1);
+
+        // Save
+        profile.save()
+        .then(profile => res.json(profile));
+    })
+    .catch( err => res.status(404).json(err));
+  });
+
+  // @route DELETE api/profile/
+  // @desc - Delete user and profile
+  // @access, Private
+
+  router.delete('/', passport.authenticate('jwt', { session: false}), (req,res) => {
+
+    Profile.findOne({ user: req.user.id })
+    .then(profile => {
+      Profile.findOneAndRemove({ user: req.user.id })
+    .then(() => {
+      User.findOneAndRemove({ _id: req.user.id })
+      .then(() => res.json({ success: true }))
+    })
+
+
     })
     .catch( err => res.status(404).json(err));
   });
