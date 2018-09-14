@@ -9,7 +9,7 @@ module.exports = function validateLoginInput(data) {
   data.handle = !isEmpty(data.handle) ? data.handle : '';
   data.status =!isEmpty(data.status) ? data.status : '';
   data.skills =!isEmpty(data.skills) ? data.skills : '';
-  console.log(data.email);
+
 
   if(!Validator.isLength(data.handle, { min: 2, max: 40})) {
     errors.handle = "Handle needs to be between 2 and 40 characters";
@@ -24,7 +24,7 @@ module.exports = function validateLoginInput(data) {
   };
 
   if(Validator.isEmpty(data.skills)){
-    errors.skills = "Status is empty, status is required";
+    errors.skills = "Skills is empty, skills is required";
   };
 
   if(!isEmpty(data.website)){

@@ -14,7 +14,7 @@ const ProfileSchema = new Schema({
   handle: {
     // Handle provides SEO friendly URL
     type: String,
-    // this part is required
+    // this part is required. EG MUST FILL
     required: true,
     max: 40
   },
