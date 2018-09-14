@@ -27,8 +27,10 @@ module.exports = function validateLoginInput(data) {
   }
 
   return {
+    // Returning all errors
     errors,
     // Check to see is isValid error is empty
+    // It's valid if the errors are empty
     isValid: isEmpty(errors)
   }
 
