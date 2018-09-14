@@ -300,8 +300,6 @@ router.post(
       User.findOneAndRemove({ _id: req.user.id })
       .then(() => res.json({ success: true }))
     })
-
-
     })
     .catch( err => res.status(404).json(err));
   });
