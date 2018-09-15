@@ -1,4 +1,4 @@
-// If its undefined or null it will turn it into a empty string for validator to work.
+// If its undefined, null it will turn it into a empty string for validator to work.
 const isEmpty = value =>
   value === undefined ||
   value === null ||
