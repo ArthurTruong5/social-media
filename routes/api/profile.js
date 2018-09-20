@@ -37,7 +37,7 @@ router.get(
     Profile.findOne({ user: req.user.id })
       // populate fields from user schema = the name and avatar
       .populate('user', ['name', 'avatar'])
-      .then(profile => {
+      .then(profile => { 
         if (!profile) {
           errors.noprofile = 'There is no profile for this user';
           return res.status(404).json(errors);
@@ -47,6 +47,7 @@ router.get(
       .catch(err => res.status(404).json(err));
   }
 );
+
 
 // @route GET api/profile/handle/:handle
 // @desc - Get profile by handle
@@ -305,3 +306,4 @@ router.post(
   });
 
 module.exports = router;
+
