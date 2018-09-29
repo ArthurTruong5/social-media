@@ -7,7 +7,7 @@ module.exports = function validateLoginInput(data) {
   let errors = {};
   // (Ternary) If  its not empty THEN data.name but if it IS empty then just be an empty string
 
-  data.email =!isEmpty(data.email) ? data.email : '';
+  data.email = !isEmpty(data.email) ? data.email : '';
   data.password = !isEmpty(data.password) ? data.password : '';
 
   console.log(data.email);
@@ -18,7 +18,7 @@ module.exports = function validateLoginInput(data) {
   }
 
   if (Validator.isEmpty(data.email)) {
-    errors.email = "Blank Input! Must put a email";
+    errors.email = 'Email field is required';
   }
 
   if (Validator.isEmpty(data.password)) {
