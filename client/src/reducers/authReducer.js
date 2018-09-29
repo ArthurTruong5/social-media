@@ -13,6 +13,7 @@ export default function(state = initialState, action) {
     case SET_CURRENT_USER:
       return {
         ...state,
+        // isAuthenticated is going to depend if this payload is empty. The user will be the actual payload.
         isAuthenticated: !isEmpty(action.payload),
         user: action.payload
       };
