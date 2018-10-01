@@ -1,7 +1,7 @@
 // Axios is a Javascript library used to make http requests from node.js or XMLHttpRequests from the browser and it supports the Promise API that is native to JS ES6. Another feature that it has over .fetch() is that it performs automatic transforms of JSON data.
 import axios from 'axios';
 
-import { GET_PROFILE, PROFILE_LOADING, GET_ERRORS } from './types';
+import { GET_PROFILE, PROFILE_LOADING, GET_ERRORS, CLEAR_CURRENT_PROFILE } from './types';
 
 
 // Dispatches an action. This is the only way to trigger a state change.
@@ -17,13 +17,13 @@ export const getCurrentProfile = () => dispatch => {
       dispatch({
         // It then calls get profile
         type: GET_PROFILE,
-        // then passes along the data which is the actual profile 
+        // then passes along the data which is the actual profile
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_PROFILE
+        type: GET_PROFILE,
         payload: {}
       })
     );
@@ -33,5 +33,12 @@ export const getCurrentProfile = () => dispatch => {
 export const setProfileLoading = () => {
   return {
     type: PROFILE_LOADING
-  }
-}
+  };
+};
+
+// Clear profile
+export const clearCurrentProfile = () => {
+  return {
+    type: CLEAR_CURRENT_PROFILE
+  };
+};
