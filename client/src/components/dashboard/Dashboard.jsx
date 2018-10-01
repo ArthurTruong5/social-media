@@ -9,7 +9,7 @@ class Dashboard extends Component {
 
   // We want to get called right away so we're going to use a lifecycle method
   componentDidMount() {
-    // ths will add our profile to our state
+    // this will add our profile to our state
     this.props.getCurrentProfile();
   }
 

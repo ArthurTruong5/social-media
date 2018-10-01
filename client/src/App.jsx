@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // Mimick a standard server
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+// IMPORTANT NOTE: We're going to have an issue with redirect unless we have SWITCH from our react-route-dom. NOTE: For every private route we must wrap it with Switch
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // Redux - Provider is a react component
 import { Provider } from 'react-redux'
 import store from './store';
@@ -11,6 +12,8 @@ import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser } from './actions/authAction';
 import { logoutUser } from './actions/authAction';
 import { clearCurrentProfile } from './actions/profileActions';
+// Private routes
+import PrivateRoute from './components/common/PrivateRoute';
 
 // Components
 import Navbar from './components/layout/Navbar';
@@ -51,6 +54,7 @@ if (localStorage.jwtToken) {
 
 };
 
+
 class App extends Component {
   render() {
     return (
@@ -62,7 +66,9 @@ class App extends Component {
           <div className ="container">
             <Route exact path="/register" component={ Register } />
             <Route exact path="/login" component={Login } />
-            <Route exact path="/dashboard" component={Dashboard } />
+            <Switch>
+            <PrivateRoute exact path="/dashboard" component={Dashboard } />
+            </Switch>
           </div>
           <Footer />
         </div>
