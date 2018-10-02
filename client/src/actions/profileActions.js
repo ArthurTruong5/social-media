@@ -5,7 +5,8 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   GET_ERRORS,
-  CLEAR_CURRENT_PROFILE
+  CLEAR_CURRENT_PROFILE,
+  SET_CURRENT_USER
 } from "./types";
 
 // Dispatches an action. This is the only way to trigger a state change.
@@ -50,6 +51,29 @@ export const createProfile = (profileData, history) => dispatch => {
       })
     );
 };
+
+// Delete Account & Profile Note: we made sure it deletes the user as well as the profile in the express app
+// It will call SET_CURRENT_USER which is in the authReducer and its going to send the empty object as the payload and isAuthenticated will be than set to false so its going log the user out
+export const deleteAccount = () => dispatch => {
+  if(window.confirm('Are you sure? This can NOT be undone!')) {
+    axios
+      .delete('/api/profile')
+      .then(res =>
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: {}
+        })
+      )
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        })
+      )
+  }
+}
+
+
 
 // Profile loading
 export const setProfileLoading = () => {
