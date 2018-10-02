@@ -66,5 +66,15 @@ Jest - https://github.com/ArthurTruong5/jest-unit-testing
 
 Error with componentWillReceiveProps() as its been depreciated - https://reactjs.org/docs/react-component.html#unsafe_componentwillreceiveprops
 
+## Solution
+
+```javascript
+static getDerivedStateFromProps(nextProps) {
+  if (nextProps.errors) {
+    return ({ errors: nextProps.errors });
+  }
+}
+```
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
