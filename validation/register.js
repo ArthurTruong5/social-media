@@ -20,6 +20,7 @@ module.exports = function validateRegisterInput(data) {
     errors.name = "Name field is required";
   }
 
+
   if (Validator.isEmpty(data.email)) {
     errors.email = "Blank Input! Must put a email";
   }

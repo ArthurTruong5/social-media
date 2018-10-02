@@ -22,23 +22,23 @@ class Dashboard extends Component {
     // if profile is null or loading is true within the redux state
     if(profile === null || loading) {
       dashboardContent = <Spinner />;
-    } else {
+      } else {
       // checked if logged in user has pro  file data
       // Object.keys just gets the keys of an object
       // The Object.keys() method returns an array of a given object's own property names, in the same order as we get with a normal loop.
-      if(Object.keys(profile).length > 0) {
-        dashboardContent = <h4>TODO: display user profile</h4>
-      } else {
-        // User is logged in but has no profile
-        dashboardContent = (
-          <div>
-            <p className="lead text-muted">Welcome { user.name }</p>
-            <p>You have not yet set up a profile, pease add some info.</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
-            Create profile
-            </Link>
-          </div>
-        );
+      if (Object.keys(profile).length > 0) {
+            dashboardContent = <h4>TODO: DISPLAY PROFILE</h4>;
+          } else {
+            // User is logged in but has no profile
+            dashboardContent = (
+              <div>
+                <p className="lead text-muted">Welcome {user.name}</p>
+                <p>You have not yet setup a profile, please add some info</p>
+                <Link to="/create-profile" className="btn btn-lg btn-info">
+                  Create Profile
+                </Link>
+              </div>
+            );
       }
     }
     // Before it gets called, it loads loading first. Remember JS is synchronous

@@ -62,6 +62,9 @@ Body-parser - https://github.com/expressjs/body-parser
 
 Jest - https://github.com/ArthurTruong5/jest-unit-testing
 
+## Bugs
+
+Error with componentWillReceiveProps() as its been depreciated - https://reactjs.org/docs/react-component.html#unsafe_componentwillreceiveprops
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
