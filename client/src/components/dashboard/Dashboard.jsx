@@ -23,7 +23,7 @@ class Dashboard extends Component {
     if(profile === null || loading) {
       dashboardContent = <Spinner />;
     } else {
-      // checked if logged in user has profile data
+      // checked if logged in user has pro  file data
       // Object.keys just gets the keys of an object
       // The Object.keys() method returns an array of a given object's own property names, in the same order as we get with a normal loop.
       if(Object.keys(profile).length > 0) {
